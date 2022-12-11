@@ -1,2 +1,2 @@
 # Data-Prototype
-Criação de uma classe Data com suas operações características 
+Criação de uma classe Data com suas operações características em python
