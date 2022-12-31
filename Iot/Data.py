@@ -1,18 +1,11 @@
 class Data:
-    def __init__(self, dia, mes, ano):
+    def __init__(self, dia=1, mes=9, ano=2001, horas=0, minutos=0, segundos=0):
         self._dia=dia
         self._ano = ano
         self._mes=mes
-        
-    def print_data(self):
-        if (self.dia<10 and self.mes<10):
-            print("0{}".format(self.dia),"0{}".format(self.mes),self.ano,sep="/")
-        elif(self.dia>=10 and self.mes<10):
-            print(self.dia,"0{}".format(self.mes),self.ano,sep="/")
-        elif (self.get_dia()<10 and self.get_mes()>=10):
-            print("0{}".format(self.dia),self.mes,self.ano,sep="/")
-        else:
-            print(self.dia,self.mes,self.ano,sep="/")                 
+        self._horas=horas
+        self._minutos = minutos
+        self._segundos=segundos
 
     def __fix_mes(self,other, mod):
         self._mes+=mod
@@ -26,7 +19,7 @@ class Data:
 
     def __fix_dia(self,other):
         if(self._dia < other.dia):
-            self.fix_mes(other,-1)
+            self.__fix_mes(other,-1)
             dia_o=abs(self._dia-other.dia)
             if(self._mes==2 or self._mes==4 or self._mes==6 or self._mes==8 or self._mes==9 or self._mes==11 or self._mes==1 ):
                 self._dia=31-dia_o
@@ -84,6 +77,18 @@ class Data:
         elif (self._ano == other.ano and self._mes == other.mes and self._dia < other.dia):
             return False
         else:
-            return True  
+            return True
+
+    def __str__(self):
+        if (self.dia<10 and self.mes<10):
+            return f'0{self.dia}/0{self.mes}/{self.ano}'
+        elif(self.dia>=10 and self.mes<10):
+            return f'{self.dia}/0{self.mes}/{self.ano}'
+        elif (self.get_dia()<10 and self.get_mes()>=10):
+            return f'0{self.dia}/{self.mes}/{self.ano}'
+        else:
+            return f'{self.dia}/{self.mes}/{self.ano}'               
+
+                  
 
     
