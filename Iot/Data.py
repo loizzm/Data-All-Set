@@ -43,9 +43,21 @@ class Data:
             else: 
                 print ("{} mes".format(self._mes),end=" e ")
             if(self._dia > 1):
-                print ("{} dias".format(self._dia),end="\n")
+                print ("{} dias".format(self._dia),end=" : ")
             else: 
-                print ("{} dia".format(self._dia),end="\n") 
+                print ("{} dia".format(self._dia),end=" : ") 
+            if(self._horas > 1):
+                print ("{} horas".format(self._horas),end=" ")
+            else: 
+                print ("{} hora".format(self._horas),end=" ")
+            if(self._minutos > 1):
+                print ("{} minutos".format(self._minutos),end=" ")
+            else: 
+                print ("{} minuto".format(self._minutos),end=" ")
+            if(self._segundos > 1):
+                print ("{} segundos".format(self._segundos),end="\n")
+            else: 
+                print ("{} segundo".format(self._segundos),end="\n")             
             return self                  
         else:
             print("****Operação inválida*****") 
@@ -72,22 +84,28 @@ class Data:
     def __check_op(self,other):
         if(self._ano < other.ano):
             return False
-        elif(self._ano == other.ano and self._mes < other.mes):
+        elif(self._ano == other.ano and self._mes < other._mes):
             return False
-        elif (self._ano == other.ano and self._mes == other.mes and self._dia < other.dia):
+        elif (self._ano == other.ano and self._mes == other.mes and self._dia < other._dia):
             return False
+        elif (self._ano == other.ano and self._mes == other.mes and self._dia == other.dia and self._horas < other._horas):
+            return False  
+        elif (self._ano == other.ano and self._mes == other.mes and self._dia == other.dia and self._horas == other._horas and self._minutos < other._minutos):
+            return False
+        elif (self._ano == other.ano and self._mes == other.mes and self._dia == other.dia and self._horas == other._horas and self._minutos == other._minutos and self._segundos < other._segundos):
+            return False          
         else:
             return True
 
     def __str__(self):
-        if (self.dia<10 and self.mes<10):
-            return f'0{self.dia}/0{self.mes}/{self.ano}'
-        elif(self.dia>=10 and self.mes<10):
-            return f'{self.dia}/0{self.mes}/{self.ano}'
-        elif (self.get_dia()<10 and self.get_mes()>=10):
-            return f'0{self.dia}/{self.mes}/{self.ano}'
+        if (self._dia<10 and self._mes<10 ):
+            return f'0{self._dia}/0{self._mes}/{self._ano} : {self._horas}:{self._minutos}:{self._segundos}'
+        elif(self._dia>=10 and self._mes<10):
+            return f'{self._dia}/0{self._mes}/{self._ano} : {self._horas}:{self._minutos}:{self._segundos}'
+        elif (self._dia<10 and self._mes>=10):
+            return f'0{self._dia}/{self._mes}/{self._ano} : {self._horas}:{self._minutos}:{self._segundos}'
         else:
-            return f'{self.dia}/{self.mes}/{self.ano}'               
+            return f'{self._dia}/{self._mes}/{self._ano} : {self._horas}:{self._minutos}:{self._segundos}'               
 
                   
 
